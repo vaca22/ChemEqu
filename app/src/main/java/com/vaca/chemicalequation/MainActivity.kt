@@ -2,11 +2,58 @@ package com.vaca.chemicalequation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        var water= ArrayList <ChemItem> ()
+        var waterIndex= ArrayList <Int> ()
+
+        water.add(ChemItem(1,2))
+        water.add(ChemItem(0,0))
+        water.add(ChemItem(2,2))
+        water.add(ChemItem(-1,0))
+        water.add(ChemItem(1,2))
+        water.add(ChemItem(2,1))
+
+
+
+        var m=0;
+        var e=0;
+
+        for(k in water.indices){
+            if(water[k].type>m){
+                m=water[k].type
+            }
+
+            if(water[k]==ChemItem(0,0)||water[k]==ChemItem(-1,0)){
+                waterIndex.add(k)
+            }
+            if(water[k]==ChemItem(-1,0)){
+                e=k;
+            }
+        }
+
+        var n=waterIndex.size+1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Log.e("fuck","撒旦立刻就福建烤老鼠的")
     }
 }
 
