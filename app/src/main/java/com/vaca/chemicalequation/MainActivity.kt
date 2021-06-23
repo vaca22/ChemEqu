@@ -113,6 +113,120 @@ class MainActivity : AppCompatActivity() {
 
 /*
 
+ConV(ST,K)
+BEGIN
+LOCAL Num:="",Size,A,Ord:=K;
+Size:=DIM(ST);
+WHILE K≤Size DO
+    A:=ASC(MID(ST,K,1));
+    IF A(1)≥48 AND A(1)≤57  OR A(1)=8722 THEN   数字或者负号
+        Num:=Num+MID(ST,K,1);
+        K:=K+1;
+    ELSE
+        BREAK;
+    END;
+END;
+IF K==Ord THEN
+    RETURN 1;//-------------没有数字默认系数就是1
+ELSE
+    RETURN EXPR(Num);
+END;
+
+END;
+
+
+
+Kind_Num(Ele)
+BEGIN
+LOCAL L,EleList:={},K,AS,Kind:=1;
+LOCAL Lower,Hol,Lon;
+LOCAL t:=0,x:={};
+L1:={};
+L:=DIM(Ele);
+AS:=ASC(Ele);
+FOR K FROM 1 TO L DO
+    IF AS(K)==43 THEN //-----------------------------------      +
+        L1:=CONCAT(L1,{0});
+    END;
+    IF AS(K)==61 THEN //----------------------------------      =
+        L1:=CONCAT(L1,{−1});
+    END;
+    IF AS(K)==40 THEN  //---------------------------------    (
+        Lower:=K;
+        t:=1;//-----------------括号flag
+        x:={};//---------------------------------L1元素下标记号记忆
+    END;
+    IF AS(K)==41 THEN  //---------------------------------    )
+        t:=0;
+        ConV(Ele,K+1)▶Hol;
+        Lon:=SIZE(L1);
+        FOR J FROM 1 TO SIZE(x) DO
+            L1(x(J)):=(RE(L1(x(J))),Hol*IM(L1(x(J))));
+        END;
+    END;
+    IF AS(K)≥65 AND AS(K)≤90 THEN  //---------------------65--90   大写字母
+        IF K<L THEN
+            IF AS(K+1)≥97 AND AS(K+1)≤122 THEN  //----------------小写字母
+                IF POS(EleList,MID(Ele,K,2))==0 THEN //--------------已有元素表是否有此元素
+                    CONCAT(L1,{Kind+i*ConV(Ele,K+2)})▶L1;
+                    Kind:=Kind+1;
+                    CONCAT(EleList,{MID(Ele,K,2)})▶EleList;
+                ELSE
+                    CONCAT(L1,{(POS(EleList,MID(Ele,K,2)),ConV(Ele,K+2))})▶L1;
+                END;
+                IF t==1 THEN
+                    x(0):=SIZE(L1);
+                END;
+
+            ELSE
+
+                IF POS(EleList,MID(Ele,K,1))==0 THEN
+                    L1:=CONCAT(L1,{(Kind,ConV(Ele,K+1))});
+                    Kind:=Kind+1;
+                    EleList:=CONCAT(EleList,{MID(Ele,K,1)});
+                ELSE
+                    L1:=CONCAT(L1,{(POS(EleList,MID(Ele,K,1)),ConV(Ele,K+1))});
+                END;
+                IF t==1 THEN
+                    x(0):=SIZE(L1);
+                END;
+            END;
+        ELSE
+
+            IF POS(EleList,MID(Ele,K,1))==0 THEN
+                L1:=CONCAT(L1,{(Kind,ConV(Ele,K+1))});
+                Kind:=Kind+1;
+                EleList:=CONCAT(EleList,{MID(Ele,K,1)});
+            ELSE
+                L1:=CONCAT(L1,{(POS(EleList,MID(Ele,K,1)),1)});
+            END;
+        END;
+    END;
+END;
+RETURN EleList;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 LOCAL Tou;
 LOCAL a:="",ab:="",ac:="",x:=50;
