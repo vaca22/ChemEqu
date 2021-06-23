@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         var cinema = arrayOf<Array<Int>>()
 
-        for (i in 0..m) {
+        for (i in 0 until m) {
             var array = arrayOf<Int>()
-            for (j in 0..n) {
+            for (j in 0 until n) {
                 array += 0
             }
             cinema += array
@@ -69,20 +69,24 @@ class MainActivity : AppCompatActivity() {
 
 
 
-//        for(i in 0 until  m){
-//            for(j in 0 until n){
-//              println("($i,$j,${cinema[i][j]})")
-//            }
-//        }
-
-
-
-        val xx=RationalNumber(25,15).add(RationalNumber(46,78))
+        for(i in 0 until  m){
+            for(j in 0 until n){
+              println("($i,$j,${cinema[i][j]})")
+            }
+        }
 
 
 
 
-        Log.e("fuck","撒旦立刻就福建烤老鼠的 ${xx.numerator}/${xx.denominator}   ")
+        val xx=RationalMatrix(cinema)
+        xx.log()
+        xx.rref()
+        xx.log()
+
+
+
+
+
     }
 
 
@@ -99,10 +103,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun rrefx1(chem: Array<Array<Int>> ){
-
-
-    }
 }
 
 

@@ -1,10 +1,13 @@
 package com.vaca.chemicalequation
 
-class RationalNumber(var numerator:Int,var denominator:Int) {
+class RationalNumber(var numerator:Int,var denominator:Int=1) {
 
     init {
         this.simplify()
     }
+
+
+
 
     private fun abs(a:Int):Int{
         if(a<0){
@@ -15,6 +18,10 @@ class RationalNumber(var numerator:Int,var denominator:Int) {
     }
 
     fun simplify():RationalNumber{
+        if(numerator==0){
+            denominator=1
+            return this
+        }
         var np=abs(numerator)
         var dp=abs(denominator)
 
@@ -36,7 +43,17 @@ class RationalNumber(var numerator:Int,var denominator:Int) {
 
 
     fun multiply(b:RationalNumber):RationalNumber{
-       return RationalNumber(numerator*b.numerator,denominator*b.denominator)
+        numerator*=b.numerator
+        denominator*=b.denominator
+        simplify()
+       return this
+    }
+
+    fun multiplyInstance(b:RationalNumber):RationalNumber{
+        val n2=numerator*b.numerator
+        val d2=denominator*b.denominator
+
+        return RationalNumber(n2,d2).simplify()
     }
 
     fun divide(b:RationalNumber):RationalNumber{
@@ -48,6 +65,23 @@ class RationalNumber(var numerator:Int,var denominator:Int) {
         numerator=denominator
         denominator=temp
         return this
+    }
+
+    fun invInstance():RationalNumber{
+        return RationalNumber(denominator,numerator)
+    }
+
+    fun strains():RationalNumber{
+        numerator=-numerator
+        return this
+    }
+
+    fun isZero():Boolean{
+        if(numerator==0){
+            return true
+        }else{
+            return false
+        }
     }
 
 }
