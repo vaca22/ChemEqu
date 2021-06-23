@@ -38,4 +38,16 @@ class RationalNumber(var numerator:Int,var denominator:Int) {
     fun multiply(b:RationalNumber):RationalNumber{
        return RationalNumber(numerator*b.numerator,denominator*b.denominator)
     }
+
+    fun divide(b:RationalNumber):RationalNumber{
+        return RationalNumber(numerator*b.denominator,denominator*b.numerator)
+    }
+
+    fun inv():RationalNumber{
+        val temp=numerator
+        numerator=denominator
+        denominator=temp
+        return this
+    }
+
 }

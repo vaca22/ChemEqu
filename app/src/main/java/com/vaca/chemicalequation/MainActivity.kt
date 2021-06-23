@@ -78,13 +78,6 @@ class MainActivity : AppCompatActivity() {
 
 
         val xx=RationalNumber(25,15).add(RationalNumber(46,78))
-        xx.simplify()
-
-
-
-
-
-
 
 
 
