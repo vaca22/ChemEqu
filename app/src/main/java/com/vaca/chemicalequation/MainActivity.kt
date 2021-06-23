@@ -10,7 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sleep(5000)
 
         var water= ArrayList <ChemItem> ()
         var waterIndex= ArrayList <Int> ()
@@ -70,6 +69,16 @@ class MainActivity : AppCompatActivity() {
 
 
 
+//        for(i in 0 until  m){
+//            for(j in 0 until n){
+//              println("($i,$j,${cinema[i][j]})")
+//            }
+//        }
+
+
+
+        val xx=RationalNumber(25,15).add(RationalNumber(46,78))
+        xx.simplify()
 
 
 
@@ -80,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        Log.e("fuck","撒旦立刻就福建烤老鼠的")
+        Log.e("fuck","撒旦立刻就福建烤老鼠的 ${xx.numerator}/${xx.denominator}   ")
     }
 
 
@@ -93,6 +102,13 @@ class MainActivity : AppCompatActivity() {
         }else{
             return 0;
         }
+    }
+
+
+
+    fun rrefx1(chem: Array<Array<Int>> ){
+
+
     }
 }
 
