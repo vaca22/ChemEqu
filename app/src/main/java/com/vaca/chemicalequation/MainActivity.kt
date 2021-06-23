@@ -3,12 +3,14 @@ package com.vaca.chemicalequation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import java.lang.Thread.sleep
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        sleep(5000)
 
         var water= ArrayList <ChemItem> ()
         var waterIndex= ArrayList <Int> ()
@@ -42,6 +44,31 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        var cinema = arrayOf<Array<Int>>()
+
+        for (i in 0..m) {
+            var array = arrayOf<Int>()
+            for (j in 0..n) {
+                array += 0
+            }
+            cinema += array
+        }
+
+
+
+
+        waterIndex.add(0,-1)
+        waterIndex.add(water.size)
+        Log.e("fuck",waterIndex.size.toString())
+
+
+        for(i in 0 until  n){
+            for(j in (waterIndex[i]+1) until waterIndex[i+1]){
+                cinema[water[j].type-1][i]+=sign(e-j)*water[j].num
+            }
+        }
+
+
 
 
 
@@ -54,6 +81,18 @@ class MainActivity : AppCompatActivity() {
 
 
         Log.e("fuck","撒旦立刻就福建烤老鼠的")
+    }
+
+
+
+    fun sign(i:Int):Int{
+        if(i>0){
+            return 1;
+        }else if(i<0){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }
 
