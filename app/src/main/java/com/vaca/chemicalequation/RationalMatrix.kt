@@ -89,6 +89,63 @@ class RationalMatrix(chem: Array<Array<Int>>) {
 
     }
 
+    private fun abs(a:Int):Int{
+        if(a<0){
+            return -a;
+        }else{
+            return a;
+        }
+    }
+    fun gcd(np :Int,dp: Int):Int{
+        var np=abs(np)
+        var dp=abs(dp)
+        var remainder=dp % np
+        var temp=0;
+        while(remainder!=0){
+            temp=np % remainder
+            np=remainder
+            remainder=temp
+        }
+        return np
+    }
+
+
+    fun lcm(np :Int,dp: Int):Int{
+        return np*dp/gcd(np,dp)
+    }
+
+
+    fun coefficientArray():Array<Int>{
+        rref()
+        var num= arrayOf <Int> ()
+        var deu= arrayOf <Int> ()
+
+        var dlcm=1;
+
+        for(k in 0 until row){
+            dlcm=lcm(abs(chemMatrix[k][column-1].denominator),dlcm)
+            num+=abs(chemMatrix[k][column-1].numerator)
+            deu+=abs(chemMatrix[k][column-1].denominator)
+        }
+
+        num+=1;
+        deu+=1;
+
+        for(k in 0 until column){
+            num[k]*=(dlcm/deu[k])
+        }
+
+        var ngcd=1;
+        for(k in 0 until column){
+            ngcd=gcd(1,num[k])
+        }
+
+        for(k in 0 until column){
+            num[k]/=ngcd
+        }
+        return num;
+    }
+
 
     fun log(){
         for(k in 0 until row){

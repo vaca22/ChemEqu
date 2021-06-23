@@ -69,19 +69,18 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        for(i in 0 until  m){
-            for(j in 0 until n){
-              println("($i,$j,${cinema[i][j]})")
-            }
-        }
-
 
 
 
         val xx=RationalMatrix(cinema)
-        xx.log()
-        xx.rref()
-        xx.log()
+        xx.rref().log()
+        val fuck=xx.coefficientArray()
+
+        var fy=""
+        for(k in fuck){
+            fy+=(k.toString()+"  ")
+        }
+        Log.e("fuckfuck",fy)
 
 
 
