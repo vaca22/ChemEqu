@@ -99,4 +99,60 @@ class ChemString(val chem: String) {
     }
 
 
+
+    fun toMatrixBaby():Array<Array<Int>>{
+        val chemList=toList()
+        val chemListIndex= ArrayList <Int> ()
+        var baby = arrayOf<Array<Int>>()
+
+        var m=0;
+        var e=0;
+
+        for(k in chemList.indices){
+            if(chemList[k].type>m){
+                m=chemList[k].type
+            }
+
+            if(chemList[k]==ChemItem(0,0)||chemList[k]==ChemItem(-1,0)){
+                chemListIndex.add(k)
+            }
+            if(chemList[k]==ChemItem(-1,0)){
+                e=k;
+            }
+        }
+        var n=chemListIndex.size+1;
+
+        for (i in 0 until m) {
+            var array = arrayOf<Int>()
+            for (j in 0 until n) {
+                array += 0
+            }
+            baby += array
+        }
+
+        chemListIndex.add(0,-1)
+        chemListIndex.add(chemList.size)
+
+        for(i in 0 until  n){
+            for(j in (chemListIndex[i]+1) until chemListIndex[i+1]){
+                baby[chemList[j].type-1][i]+=sign(e-j)*chemList[j].num
+            }
+        }
+
+
+        return baby
+    }
+
+
+    private fun sign(i:Int):Int{
+        if(i>0){
+            return 1;
+        }else if(i<0){
+            return -1;
+        }else{
+            return 0;
+        }
+    }
+
+
 }

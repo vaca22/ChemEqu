@@ -11,84 +11,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        var water= ArrayList <ChemItem> ()
-        var waterIndex= ArrayList <Int> ()
 
-        water.add(ChemItem(1,2))
-        water.add(ChemItem(0,0))
-        water.add(ChemItem(2,2))
-        water.add(ChemItem(-1,0))
-        water.add(ChemItem(1,2))
-        water.add(ChemItem(2,1))
-
-
-
-        var m=0;
-        var e=0;
-
-        for(k in water.indices){
-            if(water[k].type>m){
-                m=water[k].type
-            }
-
-            if(water[k]==ChemItem(0,0)||water[k]==ChemItem(-1,0)){
-                waterIndex.add(k)
-            }
-            if(water[k]==ChemItem(-1,0)){
-                e=k;
-            }
-        }
-
-        var n=waterIndex.size+1;
-
-
-
-        var cinema = arrayOf<Array<Int>>()
-
-        for (i in 0 until m) {
-            var array = arrayOf<Int>()
-            for (j in 0 until n) {
-                array += 0
-            }
-            cinema += array
-        }
-
-
-
-
-        waterIndex.add(0,-1)
-        waterIndex.add(water.size)
-        Log.e("fuck",waterIndex.size.toString())
-
-
-        for(i in 0 until  n){
-            for(j in (waterIndex[i]+1) until waterIndex[i+1]){
-                cinema[water[j].type-1][i]+=sign(e-j)*water[j].num
-            }
-        }
-
-        sleep(5000)
 
 
         val gg=ChemString("H2+O2=H2O");
-        val gg2=gg.toList()
-        var ff=""
-        for(k in gg2){
-            ff+="(${k.type},${k.num})  "
+        val gg2=gg.toMatrixBaby()
+
+        val gg3=RationalMatrix(gg2)
+        val gg4=gg3.coefficientArray()
+
+        var s=""
+        for(k in gg4){
+            s+="$k    "
         }
-        Log.e("fuckfuck555",ff)
+        Log.e("asdf", s)
 
-
-//
-//        val xx=RationalMatrix(cinema)
-//        xx.rref().log()
-//        val fuck=xx.coefficientArray()
-//
-//        var fy=""
-//        for(k in fuck){
-//            fy+=(k.toString()+"  ")
-//        }
-//        Log.e("fuckfuck",fy)
 
 
 
@@ -97,16 +34,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    fun sign(i:Int):Int{
-        if(i>0){
-            return 1;
-        }else if(i<0){
-            return -1;
-        }else{
-            return 0;
-        }
-    }
 
 
 
