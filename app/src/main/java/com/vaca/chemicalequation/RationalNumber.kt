@@ -8,6 +8,10 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
 
 
 
+    fun set(s:RationalNumber){
+        numerator=s.numerator
+        denominator=s.denominator
+    }
 
     private fun abs(a:Int):Int{
         if(a<0){
@@ -38,9 +42,16 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
     }
 
     fun add(b:RationalNumber):RationalNumber{
-        return RationalNumber(numerator*b.denominator+b.numerator*denominator,denominator*b.denominator)
+        numerator=numerator*b.denominator+b.numerator*denominator
+        denominator *= b.denominator
+        simplify()
+        return this
     }
 
+
+    fun copy():RationalNumber{
+        return RationalNumber(numerator,denominator)
+    }
 
     fun multiply(b:RationalNumber):RationalNumber{
         numerator*=b.numerator
@@ -49,12 +60,7 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
        return this
     }
 
-    fun multiplyInstance(b:RationalNumber):RationalNumber{
-        val n2=numerator*b.numerator
-        val d2=denominator*b.denominator
 
-        return RationalNumber(n2,d2).simplify()
-    }
 
     fun divide(b:RationalNumber):RationalNumber{
         return RationalNumber(numerator*b.denominator,denominator*b.numerator)
@@ -67,13 +73,11 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
         return this
     }
 
-    fun invInstance():RationalNumber{
-        return RationalNumber(denominator,numerator)
-    }
+
 
     fun strains():RationalNumber{
-        numerator=-numerator
-        return this
+
+        return RationalNumber(-numerator,denominator)
     }
 
     fun isZero():Boolean{

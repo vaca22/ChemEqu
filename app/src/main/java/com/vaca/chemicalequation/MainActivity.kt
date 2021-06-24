@@ -14,10 +14,23 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val gg=ChemString("H2+O2=H2O");
+        val gg=ChemString("H2+Ca(CN)2+NaAlF4+FeSO4+MgSiO3+KI+H3PO4+PbCrO4+BrCl+CF2Cl2+SO2=PbBr2+CrCl3+MgCO3+KAl(OH)4+Fe(SCN)3+PI3+Na2SiO3+CaF2+H2O");
         val gg2=gg.toMatrixBaby()
 
+//       for(k in gg2){
+//           var s=""
+//           for(j in k){
+//               s+="${j}  "
+//           }
+//           Log.e("fuckasdf ",s)
+//       }
+
+//
         val gg3=RationalMatrix(gg2)
+
+//        val gg4=gg3.rref().log()
+
+
         val gg4=gg3.coefficientArray()
 
         var s=""

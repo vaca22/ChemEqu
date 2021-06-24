@@ -24,35 +24,36 @@ class RationalMatrix(chem: Array<Array<Int>>) {
 
 
 
-    fun swapRow(i:Int,j:Int):RationalMatrix{
+    private fun swapRow(i:Int,j:Int):RationalMatrix{
         if(i==j){
             return this
         }
         var temp:RationalNumber
         for(k in 0 until column){
-            temp=chemMatrix[i][k]
-            chemMatrix[i][k]=chemMatrix[j][k]
-            chemMatrix[j][k]=temp
+            temp=chemMatrix[i][k].copy()
+            chemMatrix[i][k].set(chemMatrix[j][k])
+            chemMatrix[j][k].set(temp)
         }
         return this
     }
 
-    fun reduceRow(baseRow: Int):RationalMatrix{
-        val temp=chemMatrix[baseRow][baseRow].invInstance()
+    private fun reduceRow(baseRow: Int):RationalMatrix{
+        val temp=chemMatrix[baseRow][baseRow].copy().inv()
         for(k in 0 until column){
-            chemMatrix[baseRow][k]=chemMatrix[baseRow][k].multiply(temp)
+           chemMatrix[baseRow][k].multiply(temp)
         }
         return this
     }
 
 
-    fun reduceRow(baseRow:Int, secondRow:Int):RationalMatrix{
+    private fun reduceRow(baseRow:Int, secondRow:Int):RationalMatrix{
+        val temp=chemMatrix[secondRow][baseRow].copy()
         for(k in 0 until  column){
-            chemMatrix[secondRow][k]=chemMatrix[secondRow][k]
+            chemMatrix[secondRow][k]
                 .add(
-                    chemMatrix[baseRow][k]
-                    .multiplyInstance(
-                        chemMatrix[secondRow][baseRow]
+                    chemMatrix[baseRow][k].copy()
+                    .multiply(
+                      temp
                     )
                     .strains()
                 )
@@ -84,9 +85,7 @@ class RationalMatrix(chem: Array<Array<Int>>) {
                 reduceRow(i,j)
             }
         }
-
         return this
-
     }
 
     private fun abs(a:Int):Int{

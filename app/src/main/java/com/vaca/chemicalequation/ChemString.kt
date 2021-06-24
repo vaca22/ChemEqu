@@ -3,8 +3,9 @@ package com.vaca.chemicalequation
 
 import java.nio.charset.StandardCharsets.US_ASCII
 
-class ChemString(val chem: String) {
-    var chemByte: ByteArray = chem.toByteArray(US_ASCII)
+class ChemString(chem: String) {
+    val chemMine=chem.trim()
+    var chemByte: ByteArray = chemMine.toByteArray(US_ASCII)
     var chemInt: IntArray = IntArray(chemByte.size) { k ->
         chemByte[k].toUByte().toInt()
     }
@@ -34,7 +35,7 @@ class ChemString(val chem: String) {
 
 
     fun midString(k:Int,num:Int):String{
-        return chem.substring(k,k+num)
+        return chemMine.substring(k,k+num)
     }
 
 
@@ -61,8 +62,8 @@ class ChemString(val chem: String) {
                 }
                 41->{
                     bracketFlag=false
-                    val hol=convertNumber(k)
-                    for(j in bracketItem.indices){
+                    val hol=convertNumber(k+1)
+                    for(j in bracketItem){
                         result[j]= ChemItem(result[j].type,hol*result[j].num)
                     }
                 }
