@@ -53,19 +53,26 @@ class ChemString(chem: String) {
         var elementType=1;
 
         var lastCutIndex=0
+        if(chemInt[lastCutIndex] in 48..57){
+            lastCutIndex++
+        }
 
         for(k in chemInt.indices){
             when(chemInt[k]){
                 43->{
                     cutString+=chemMine.substring(lastCutIndex,k+1)
                     lastCutIndex=k+1
-
+                    if(chemInt[lastCutIndex] in 48..57){
+                        lastCutIndex++
+                    }
                     result.add(ChemItem(0,0))
                 }
                 61->{
                     cutString+=chemMine.substring(lastCutIndex,k+1)
                     lastCutIndex=k+1
-
+                    if(chemInt[lastCutIndex] in 48..57){
+                        lastCutIndex++
+                    }
                     result.add(ChemItem(-1,0))
                 }
                 40->{
