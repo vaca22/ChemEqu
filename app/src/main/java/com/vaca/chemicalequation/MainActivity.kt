@@ -2,47 +2,47 @@ package com.vaca.chemicalequation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import java.lang.Thread.sleep
+import com.vaca.chemicalequation.chem.ChemString
+import com.vaca.chemicalequation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.calc.setOnClickListener {
+            val chemAna=
+                ChemString(binding.chem.text.toString());
+
+            if(chemAna.checkString()){
+                val chemResult=chemAna.result()
+                if(!chemResult.isNullOrEmpty()){
+                    if(chemAna.checkResult()){
+                        chemResult.let {
+                            var temp=""
+                            for(k in it.indices){
+                                temp+=(if(it[k]==1){""}else{it[k].toString()}+chemAna.cutString[k])
+                            }
+                            binding.chem.setText(temp)
+                        }
+                    }else{
+                        binding.chem.setText("输入错误")
+                    }
 
 
-
-
-
-        val gg=ChemString("H2+Ca(CN)2+NaAlF4+FeSO4+MgSiO3+KI+H3PO4+PbCrO4+BrCl+CF2Cl2+SO2=PbBr2+CrCl3+MgCO3+KAl(OH)4+Fe(SCN)3+PI3+Na2SiO3+CaF2+H2O");
-        val gg2=gg.toMatrixBaby()
-
-//       for(k in gg2){
-//           var s=""
-//           for(j in k){
-//               s+="${j}  "
-//           }
-//           Log.e("fuckasdf ",s)
-//       }
-
-//
-        val gg3=RationalMatrix(gg2)
-
-//        val gg4=gg3.rref().log()
-
-
-        val gg4=gg3.coefficientArray()
-
-        var s=""
-        for(k in gg4){
-            s+="$k    "
+                }else{
+                    binding.chem.setText("输入错误")
+                }
+            }else{
+                binding.chem.setText("输入错误")
+            }
         }
-        Log.e("asdf", s)
-
-
-
-
-
+        binding.clear.setOnClickListener {
+            binding.chem.setText("")
+        }
 
     }
 

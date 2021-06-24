@@ -6,13 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
+        android:layout_margin="10dp"
+        android:textSize="22sp"
+        android:id="@+id/chem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="H2+O2=H2O"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.362" />
+
+    <TextView
+        android:textSize="26sp"
+        android:background="@drawable/ai_bg"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:id="@+id/calc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="36dp"
+        android:text="配平"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chem" />
+
+    <TextView
+        android:textSize="26sp"
+        android:background="@drawable/bg_bpm_btn_del"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="52dp"
+        android:text="清空"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

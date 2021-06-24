@@ -1,4 +1,4 @@
-package com.vaca.chemicalequation
+package com.vaca.chemicalequation.chem
 
 import android.util.Log
 
@@ -13,7 +13,7 @@ class RationalMatrix(chem: Array<Array<Int>>) {
         for(k in 0 until row){
             var array = arrayOf<RationalNumber>()
             for(j in 0 until column){
-                array+=RationalNumber(chem[k][j])
+                array+= RationalNumber(chem[k][j])
             }
             chemMatrix+=array
         }
@@ -24,11 +24,11 @@ class RationalMatrix(chem: Array<Array<Int>>) {
 
 
 
-    private fun swapRow(i:Int,j:Int):RationalMatrix{
+    private fun swapRow(i:Int,j:Int): RationalMatrix {
         if(i==j){
             return this
         }
-        var temp:RationalNumber
+        var temp: RationalNumber
         for(k in 0 until column){
             temp=chemMatrix[i][k].copy()
             chemMatrix[i][k].set(chemMatrix[j][k])
@@ -37,7 +37,7 @@ class RationalMatrix(chem: Array<Array<Int>>) {
         return this
     }
 
-    private fun reduceRow(baseRow: Int):RationalMatrix{
+    private fun reduceRow(baseRow: Int): RationalMatrix {
         val temp=chemMatrix[baseRow][baseRow].copy().inv()
         for(k in 0 until column){
            chemMatrix[baseRow][k].multiply(temp)
@@ -46,7 +46,7 @@ class RationalMatrix(chem: Array<Array<Int>>) {
     }
 
 
-    private fun reduceRow(baseRow:Int, secondRow:Int):RationalMatrix{
+    private fun reduceRow(baseRow:Int, secondRow:Int): RationalMatrix {
         val temp=chemMatrix[secondRow][baseRow].copy()
         for(k in 0 until  column){
             chemMatrix[secondRow][k]
@@ -65,7 +65,7 @@ class RationalMatrix(chem: Array<Array<Int>>) {
 
 
 
-    fun rref( ):RationalMatrix{
+    fun rref( ): RationalMatrix {
 
         for(i in 0 until row){
             for(j in i until row){

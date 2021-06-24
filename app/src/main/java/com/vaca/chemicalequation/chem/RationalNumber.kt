@@ -1,4 +1,4 @@
-package com.vaca.chemicalequation
+package com.vaca.chemicalequation.chem
 
 class RationalNumber(var numerator:Int,var denominator:Int=1) {
 
@@ -8,7 +8,7 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
 
 
 
-    fun set(s:RationalNumber){
+    fun set(s: RationalNumber){
         numerator=s.numerator
         denominator=s.denominator
     }
@@ -21,7 +21,7 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
         }
     }
 
-    fun simplify():RationalNumber{
+    fun simplify(): RationalNumber {
         if(numerator==0){
             denominator=1
             return this
@@ -41,7 +41,7 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
         return this
     }
 
-    fun add(b:RationalNumber):RationalNumber{
+    fun add(b: RationalNumber): RationalNumber {
         numerator=numerator*b.denominator+b.numerator*denominator
         denominator *= b.denominator
         simplify()
@@ -49,11 +49,11 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
     }
 
 
-    fun copy():RationalNumber{
+    fun copy(): RationalNumber {
         return RationalNumber(numerator,denominator)
     }
 
-    fun multiply(b:RationalNumber):RationalNumber{
+    fun multiply(b: RationalNumber): RationalNumber {
         numerator*=b.numerator
         denominator*=b.denominator
         simplify()
@@ -62,11 +62,11 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
 
 
 
-    fun divide(b:RationalNumber):RationalNumber{
+    fun divide(b: RationalNumber): RationalNumber {
         return RationalNumber(numerator*b.denominator,denominator*b.numerator)
     }
 
-    fun inv():RationalNumber{
+    fun inv(): RationalNumber {
         val temp=numerator
         numerator=denominator
         denominator=temp
@@ -75,7 +75,7 @@ class RationalNumber(var numerator:Int,var denominator:Int=1) {
 
 
 
-    fun strains():RationalNumber{
+    fun strains(): RationalNumber {
 
         return RationalNumber(-numerator,denominator)
     }
