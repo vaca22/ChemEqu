@@ -67,20 +67,28 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        sleep(5000)
 
 
-
-
-
-        val xx=RationalMatrix(cinema)
-        xx.rref().log()
-        val fuck=xx.coefficientArray()
-
-        var fy=""
-        for(k in fuck){
-            fy+=(k.toString()+"  ")
+        val gg=ChemString("H2+O2=H2O");
+        val gg2=gg.toList()
+        var ff=""
+        for(k in gg2){
+            ff+="(${k.type},${k.num})  "
         }
-        Log.e("fuckfuck",fy)
+        Log.e("fuckfuck555",ff)
+
+
+//
+//        val xx=RationalMatrix(cinema)
+//        xx.rref().log()
+//        val fuck=xx.coefficientArray()
+//
+//        var fy=""
+//        for(k in fuck){
+//            fy+=(k.toString()+"  ")
+//        }
+//        Log.e("fuckfuck",fy)
 
 
 
