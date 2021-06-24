@@ -24,7 +24,7 @@
         android:id="@+id/chem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Al+NaOH+H2O=NaAlO2+H2"
+        android:text="H2+Ca(CN)2+NaAlF4+FeSO4+MgSiO3+KI+H3PO4+PbCrO4+BrCl+CF2Cl2+SO2=PbBr2+CrCl3+MgCO3+KAl(OH)4+Fe(SCN)3+PI3+Na2SiO3+CaF2+H2O"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
